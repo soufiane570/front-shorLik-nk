@@ -5,6 +5,7 @@ import LinksList from './components/LinksList';
 import Clipboard from './components/Clipboard';
 import URLRedirection from './components/URLRedirection';
 import ClipboardViewer from './components/ClipboardViewer';
+import ShortUrlPage from './components/ShortUrlPage';
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         <Route path="/" element={<URLShortener />} />
         <Route path="/shortener" element={<URLShortener />} />
         <Route path="/links-list" element={<LinksList />} />
+        <Route path="/l/:shortUrlLinks" component={<ShortUrlPage/>} />
         <Route path="/clipboard" element={<Clipboard />} />
+        
         {/* <Route path='*' element={< Clipboard/>} /> */}
         <Route path="/:short" component={<URLRedirection/>} />
         <Route path="/clipboard/:clipboard_short_url" element={<ClipboardViewer />} />
