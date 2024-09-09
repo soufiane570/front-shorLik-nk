@@ -3,10 +3,12 @@ import axios from 'axios';
 import Layout from './Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import {QRCodeSVG} from 'qrcode.react';
 
 function LinksList() {
   const [links, setLinks] = useState([{ url: '', title: '', description: '' }]);
   const [shortUrl, setShortUrl] = useState('');
+  const [qrCodeUrl, setQrCodeUrl] = useState('');
 
   const handleChange = (index, e) => {
     const newLinks = [...links];
@@ -26,9 +28,12 @@ function LinksList() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/linklist', { links });
-      setShortUrl(response.data.shortUrl);
-      console.log(response.data)
+      const response = await axios.post('https://back-end-short-link.onrender.com/linklist', { 
+        urls: links
+      });
+
+      setShortUrl(response.data.shortLink);
+      setQrCodeUrl(`https://back-end-short-link.onrender.com/${response.data.shortLink}`);
     } catch (error) {
       console.error('Error generating short URL:', error);
     }
@@ -67,30 +72,33 @@ function LinksList() {
               />
               {index > 0 && (
                 <button
-                type="button"
-                onClick={() => handleDelete(index)}
-                style={iconButtonStyle}
-              >
-                <FontAwesomeIcon icon={faTrashAlt} />
-              </button>
+                  type="button"
+                  onClick={() => handleDelete(index)}
+                  style={iconButtonStyle}
+                >
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                </button>
               )}
             </div>
           ))}
           <button type="button" onClick={addLink} style={addButtonStyle}>Add Another Link</button>
+          
           <button type="submit" style={submitButtonStyle}>Generate Short URL</button>
         </form>
+
+        {/* Display the short URL */}
         {shortUrl && (
           <div style={resultStyle}>
-            <p>Your short URL: <a href={shortUrl} style={linkStyle}>{shortUrl}</a></p>
+            <p>Your short URL: <a href={`https://back-end-short-link.onrender.com/${shortUrl}`} style={linkStyle} target='_blank' rel="noopener noreferrer" >{`https://back-end-short-link.onrender.com/${shortUrl}`}</a></p>
+            <QRCodeSVG value={qrCodeUrl} size={150} />
           </div>
         )}
-        <p>Your short URL: <a href={shortUrl} style={linkStyle}>http://localhost:3000/linklist/Mjf0jA</a></p>
       </div>
     </Layout>
   );
 }
 
-// Styles
+// Styles (unchanged from your original code)
 const containerStyle = {
   textAlign: 'center',
   marginTop: '50px',
@@ -162,6 +170,7 @@ const linkStyle = {
   textDecoration: 'none',
   fontWeight: 'bold',
 };
+
 const iconButtonStyle = {
   background: 'none',
   border: 'none',
