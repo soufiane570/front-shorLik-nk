@@ -33,7 +33,7 @@ function LinksList() {
       });
 
       setShortUrl(response.data.shortLink);
-      setQrCodeUrl(`https://back-end-short-link.onrender.com/${response.data.shortLink}`);
+      setQrCodeUrl(`https://back-end-short-link.onrender.com/linklist/${response.data.shortLink}`);
     } catch (error) {
       console.error('Error generating short URL:', error);
     }
@@ -89,7 +89,7 @@ function LinksList() {
         {/* Display the short URL */}
         {shortUrl && (
           <div style={resultStyle}>
-            <p>Your short URL: <a href={`https://back-end-short-link.onrender.com/${shortUrl}`} style={linkStyle} target='_blank' rel="noopener noreferrer" >{`https://back-end-short-link.onrender.com/${shortUrl}`}</a></p>
+            <p>Your short URL: <a href={`https://back-end-short-link.onrender.com/linklist/${shortUrl}`} style={linkStyle} target='_blank' rel="noopener noreferrer" >{`https://back-end-short-link.onrender.com/linklist/${shortUrl}`}</a></p>
             <QRCodeSVG value={qrCodeUrl} size={150} />
           </div>
         )}
