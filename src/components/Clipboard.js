@@ -8,7 +8,7 @@ function Clipboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post('http://localhost:3001/clipboard', { clipboard_text:text });
+    const response = await axios.post('https://back-end-short-link.onrender.com/clipboard', { clipboard_text:text });
     setClipboard_text(response.data.clipboard_short_url);
   };
 
@@ -27,7 +27,7 @@ function Clipboard() {
         </form>
         {clipboard_text && (
           <div style={resultStyle}>
-            <p>Your short URL: <a href={`http://localhost:3000/clipboard/${clipboard_text}`} style={linkStyle}>{`http://localhost:3000/clipboard/${clipboard_text}`}</a></p>
+            <p>Your short URL: <a href={`https://front-shor-link.vercel.app/clipboard/${clipboard_text}`} style={linkStyle}>{`https://front-shor-link.vercel.app/clipboard/${clipboard_text}`}</a></p>
           </div>
         )}
       </div>

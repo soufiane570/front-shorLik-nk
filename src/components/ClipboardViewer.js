@@ -14,7 +14,7 @@ function ClipboardViewer() {
   useEffect(() => {
     const fetchClipboard = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/clipboard/${clipboard_short_url}`);
+        const response = await axios.get(`https://back-end-short-link.onrender.com/clipboard/${clipboard_short_url}`);
         setClipboardText(response.data.clipboard_text);
         setUpdatedText(response.data.clipboard_text); // Initialize updatedText
       } catch (err) {
@@ -33,7 +33,7 @@ function ClipboardViewer() {
 
   const handleUpdateClick = async () => {
     try {
-      await axios.put(`http://localhost:3001/clipboard/${clipboard_short_url}`, { clipboard_text: updatedText });
+      await axios.put(`https://back-end-short-link.onrender.com/clipboard/${clipboard_short_url}`, { clipboard_text: updatedText });
       setClipboardText(updatedText);
       setSuccess('Clipboard updated successfully!'); 
     } catch (err) {
