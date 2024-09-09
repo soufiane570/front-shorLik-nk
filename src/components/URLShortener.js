@@ -83,9 +83,9 @@ function URLShortener() {
 
         {shortUrl && (
           <div style={resultStyle}>
-            <p>Your short URL: <a target='_blank' rel="noopener noreferrer" href={`https://back-end-short-link.onrender.com/${shortUrl}`} onClick={handleCopy} style={linkStyle}>{`https://front-shor-link.vercel.app/${shortUrl}`}</a></p>
+            <p>Your short URL: <a target='_blank' rel="noopener noreferrer" href={`https://front-shor-link.vercel.app/${shortUrl}`} onClick={handleCopy} style={linkStyle}>{`https://front-shor-link.vercel.app/${shortUrl}`}</a></p>
             <div style={qrContainerStyle}>
-              <QRCodeSVG value={`https://back-end-short-link.onrender.com/${shortUrl}`} size={128} style={qrStyle} />
+              <QRCodeSVG value={`https://front-shor-link.vercel.app/${shortUrl}`} size={128} style={qrStyle} />
             </div>
             <button onClick={handleCopy} style={copyButtonStyle}>Copy URL</button>
             {copySuccess && <p style={copySuccessStyle}>{copySuccess}</p>}

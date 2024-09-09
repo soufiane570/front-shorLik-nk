@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Layout from './Layout';
 
 function ShortUrlPage() {
-  const { shortUrlLinks } = useParams(); // Extract shortUrl from route parameters
+  const { short_link } = useParams(); // Extract shortUrl from route parameters
   const [linksList, setLinksList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,7 +12,8 @@ function ShortUrlPage() {
   useEffect(() => {
     const fetchLinksList = async () => {
       try {
-        const response = await axios.get(`https://back-end-short-link.onrender.com/linklist/${shortUrlLinks}`);
+        const response = await axios.get(`https://back-end-short-link.onrender.com/linklist/${short_link}`);
+        console.log(response.data);
         setLinksList(response.data.urls);
         setLoading(false);
       } catch (error) {
@@ -22,7 +23,7 @@ function ShortUrlPage() {
     };
 
     fetchLinksList();
-  }, [shortUrlLinks]);
+  }, [short_link]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -30,7 +31,7 @@ function ShortUrlPage() {
   return (
     <Layout>
       <div style={containerStyle}>
-        <h2 style={headingStyle}>Links for Short URL: {`https://front-shor-link.vercel.app/l/${shortUrlLinks}`}</h2>
+        <h2 style={headingStyle}>Links for Short URL: {`https://front-shor-link.vercel.app/l/${short_link}`}</h2>
         {linksList.length === 0 ? (
           <p>No links found for this short URL.</p>
         ) : (

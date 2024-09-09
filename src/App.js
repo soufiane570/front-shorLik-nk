@@ -13,12 +13,13 @@ function App() {
       <Routes>
         <Route path="/" element={<URLShortener />} />
         <Route path="/shortener" element={<URLShortener />} />
+        <Route path="/:short_url" component={<URLRedirection/>} />
+
         <Route path="/links-list" element={<LinksList />} />
-        <Route path="/l/:shortUrlLinks" component={<ShortUrlPage/>} />
-        <Route path="/clipboard" element={<Clipboard />} />
+        <Route path="/linklist/:short_link" component={<ShortUrlPage/>} />
         
         {/* <Route path='*' element={< Clipboard/>} /> */}
-        <Route path="/:short" component={<URLRedirection/>} />
+        <Route path="/clipboard" element={<Clipboard />} />
         <Route path="/clipboard/:clipboard_short_url" element={<ClipboardViewer />} />
       </Routes>
     </Router>
