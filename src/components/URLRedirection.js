@@ -18,7 +18,7 @@ function URLRedirection() {
   };
 
     handleSubmit();
-  }, [redirectUrl]);
+  }, [short]);
 
   return (
     <Layout>

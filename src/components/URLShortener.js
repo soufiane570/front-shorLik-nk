@@ -38,7 +38,7 @@ function URLShortener() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/shorten', { original_url: url, expiry });
+      const response = await axios.post('https://back-end-short-link.onrender.com/shorten', { original_url: url, expiry });
       setShortUrl(response.data.short_url);
       console.log(response.data)
     } catch (error) {
@@ -83,9 +83,9 @@ function URLShortener() {
 
         {shortUrl && (
           <div style={resultStyle}>
-            <p>Your short URL: <a target='_blank' rel="noopener noreferrer" href={`http://localhost:3001/${shortUrl}`} onClick={handleCopy} style={linkStyle}>{`http://localhost:3001/${shortUrl}`}</a></p>
+            <p>Your short URL: <a target='_blank' rel="noopener noreferrer" href={`https://back-end-short-link.onrender.com/${shortUrl}`} onClick={handleCopy} style={linkStyle}>{`https://front-shor-link.vercel.app/${shortUrl}`}</a></p>
             <div style={qrContainerStyle}>
-              <QRCodeSVG value={`http://localhost:3001/${shortUrl}`} size={128} style={qrStyle} />
+              <QRCodeSVG value={`https://back-end-short-link.onrender.com/${shortUrl}`} size={128} style={qrStyle} />
             </div>
             <button onClick={handleCopy} style={copyButtonStyle}>Copy URL</button>
             {copySuccess && <p style={copySuccessStyle}>{copySuccess}</p>}
