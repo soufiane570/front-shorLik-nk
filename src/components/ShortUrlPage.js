@@ -30,7 +30,7 @@ function ShortUrlPage() {
   return (
     <Layout>
       <div style={containerStyle}>
-        <h2 style={headingStyle}>Links for Short URL: {shortUrlLinks}</h2>
+        <h2 style={headingStyle}>Links for Short URL: {`https://front-shor-link.vercel.app/l/${shortUrlLinks}`}</h2>
         {linksList.length === 0 ? (
           <p>No links found for this short URL.</p>
         ) : (
