@@ -47,7 +47,7 @@ function URLShortener() {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`https://front-shor-link.vercel.app/`+shortUrl);
+    navigator.clipboard.writeText(`https://front-shor-link.vercel.app/shortener/`+shortUrl);
     setCopySuccess('Copied!');
     setTimeout(() => setCopySuccess(''), 2000); // Reset message after 2 seconds
   };
@@ -83,9 +83,9 @@ function URLShortener() {
 
         {shortUrl && (
           <div style={resultStyle}>
-            <p>Your short URL: <a target='_blank' rel="noopener noreferrer" href={`https://front-shor-link.vercel.app/${shortUrl}`} onClick={handleCopy} style={linkStyle}>{`https://front-shor-link.vercel.app/${shortUrl}`}</a></p>
+            <p>Your short URL: <a target='_blank' rel="noopener noreferrer" href={`https://front-shor-link.vercel.app/shortener/${shortUrl}`} onClick={handleCopy} style={linkStyle}>{`https://front-shor-link.vercel.app/shortener/${shortUrl}`}</a></p>
             <div style={qrContainerStyle}>
-              <QRCodeSVG value={`https://front-shor-link.vercel.app/${shortUrl}`} size={128} style={qrStyle} />
+              <QRCodeSVG value={`https://front-shor-link.vercel.app/shortener/${shortUrl}`} size={128} style={qrStyle} />
             </div>
             <button onClick={handleCopy} style={copyButtonStyle}>Copy URL</button>
             {copySuccess && <p style={copySuccessStyle}>{copySuccess}</p>}
