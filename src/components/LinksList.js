@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import Layout from './Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -38,7 +38,9 @@ function LinksList() {
       console.error('Error generating short URL:', error);
     }
   };
-
+  useEffect(() => {
+    document.title = "Links Lists"
+ }, []);
   return (
     <Layout>
       <div style={containerStyle}>

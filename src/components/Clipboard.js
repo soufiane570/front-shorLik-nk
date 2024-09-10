@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import Layout from './Layout';
 
@@ -11,7 +11,9 @@ function Clipboard() {
     const response = await axios.post('https://back-end-short-link.onrender.com/clipboard', { clipboard_text:text });
     setClipboard_text(response.data.clipboard_short_url);
   };
-
+  useEffect(() => {
+    document.title = "Clipboard"
+ }, []);
   return (
     <Layout>
       <div style={containerStyle}>

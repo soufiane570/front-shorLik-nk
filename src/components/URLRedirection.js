@@ -28,7 +28,7 @@ function URLRedirection() {
         console.error('Error redirecting:', error);
       }
     };
-
+    document.title = "URL Redirection"
     redirect();
   }, [short_url]);
 

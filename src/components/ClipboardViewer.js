@@ -23,7 +23,7 @@ function ClipboardViewer() {
         setLoading(false);
       }
     };
-
+    document.title = "Clipboard Viewer"
     fetchClipboard();
   }, [clipboard_short_url]);
 

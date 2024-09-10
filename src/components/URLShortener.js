@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import Layout from './Layout';
 import { QRCodeSVG } from 'qrcode.react';
@@ -52,6 +52,9 @@ function URLShortener() {
     setTimeout(() => setCopySuccess(''), 2000); // Reset message after 2 seconds
   };
 
+  useEffect(() => {
+    document.title = "URL Shortener"
+ }, []);
   return (
     <Layout>
       <div style={containerStyle}>

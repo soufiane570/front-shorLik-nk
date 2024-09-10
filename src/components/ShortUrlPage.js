@@ -21,7 +21,7 @@ function ShortUrlPage() {
         setLoading(false);
       }
     };
-
+    document.title = `List Link of ur Shor Link : https://front-shor-link.vercel.app/linklist/${short_link}`
     fetchLinksList();
   }, [short_link]);
 
