@@ -12,6 +12,9 @@ function URLRedirection() {
         const response = await fetch(`https://back-end-short-link.onrender.com/${short_url}`);
         const result = await response.json();
         // Redirect to the original URL
+        console.log(response);
+        console.log(result);
+        
         window.location.href = result.original_url;
       } catch (error) {
         console.error('Error redirecting:', error);
