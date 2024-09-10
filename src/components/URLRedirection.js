@@ -2,20 +2,28 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 function URLRedirection() {
-  const {short_url} = useParams();
-  // const [redirectUrl, setRedirectUrl] = useState('');
+  const { short_url } = useParams();
 
   useEffect(() => {
     const redirect = async () => {
       try {
         // Fetch the URL from the backend
         const response = await fetch(`https://back-end-short-link.onrender.com/${short_url}`);
-        const result = await response.json();
-        // Redirect to the original URL
-        console.log('ha',response);
-        console.log('hi',result);
 
-        window.location.href = result.original_url;
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        console.log('Response:', response);
+        console.log('Result:', result);
+
+        if (result.original_url) {
+          // Redirect to the original URL
+          window.location.href = result.original_url;
+        } else {
+          console.error('Original URL not found in response');
+        }
       } catch (error) {
         console.error('Error redirecting:', error);
       }
@@ -26,10 +34,9 @@ function URLRedirection() {
 
   return (
     <div style={containerStyle}>
-    <h2 style={headingStyle}>Redirecting...</h2>
-    {/* Optionally, you can show a loading message */}
-    <p>Please wait while we redirect you...</p>
-  </div>
+      <h2 style={headingStyle}>Redirecting...</h2>
+      <p>Please wait while we redirect you...</p>
+    </div>
   );
 }
 
@@ -50,6 +57,5 @@ const headingStyle = {
   fontSize: '24px',
   color: '#333',
 };
-
 
 export default URLRedirection;
