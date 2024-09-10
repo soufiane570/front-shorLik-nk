@@ -47,7 +47,7 @@ function URLShortener() {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`https://back-end-short-link.onrender.com/`+shortUrl);
+    navigator.clipboard.writeText(`https://front-shor-link.vercel.app/`+shortUrl);
     setCopySuccess('Copied!');
     setTimeout(() => setCopySuccess(''), 2000); // Reset message after 2 seconds
   };
