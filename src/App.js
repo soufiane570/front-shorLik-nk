@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<URLShortener />} />
         <Route path="/shortener" element={<URLShortener />} />
-        <Route path="/:short_url" component={<URLRedirection/>} />
+        <Route path="/shortener/:short_url" component={<URLRedirection/>} />
 
         <Route path="/links-list" element={<LinksList />} />
         <Route path="/linklist/:short_link" component={<ShortUrlPage/>} />

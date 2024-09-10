@@ -1,36 +1,32 @@
-import React, { useState,useEffect } from 'react';
-import axios from 'axios';
-import Layout from './Layout';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 function URLRedirection() {
   const {short_url} = useParams();
-  const [redirectUrl, setRedirectUrl] = useState('');
+  // const [redirectUrl, setRedirectUrl] = useState('');
 
-  useEffect(() => { 
-    const handleSubmit = async () => {
-    try {
-      const response = await axios.get(`https://back-end-short-link.onrender.com/${short_url}`);
-      setRedirectUrl(response.request.responseURL);
-      console.log(response.request.responseURL)
-    } catch (error) {
-    }
-  };
+  useEffect(() => {
+    const redirect = async () => {
+      try {
+        // Fetch the URL from the backend
+        const response = await fetch(`https://back-end-short-link.onrender.com/${short_url}`);
+        const result = await response.json();
+        // Redirect to the original URL
+        window.location.href = result.original_url;
+      } catch (error) {
+        console.error('Error redirecting:', error);
+      }
+    };
 
-    handleSubmit();
+    redirect();
   }, [short_url]);
 
   return (
-    <Layout>
-      <div style={containerStyle}>
-        <h2 style={headingStyle}>Redirect from Short URL</h2>
-        {redirectUrl && (
-          <div style={resultStyle}>
-            <p>Redirecting to: <a href={`https://back-end-short-link.onrender.com/${redirectUrl}`} style={linkStyle}>{redirectUrl}</a></p>
-          </div>
-        )}
-      </div>
-    </Layout>
+    <div style={containerStyle}>
+    <h2 style={headingStyle}>Redirecting...</h2>
+    {/* Optionally, you can show a loading message */}
+    <p>Please wait while we redirect you...</p>
+  </div>
   );
 }
 
@@ -52,16 +48,5 @@ const headingStyle = {
   color: '#333',
 };
 
-
-const resultStyle = {
-  marginTop: '20px',
-  textAlign: 'center',
-};
-
-const linkStyle = {
-  color: '#007BFF',
-  textDecoration: 'none',
-  fontWeight: 'bold',
-};
 
 export default URLRedirection;
