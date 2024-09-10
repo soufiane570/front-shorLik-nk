@@ -25,26 +25,38 @@ function ShortUrlPage() {
     fetchLinksList();
   }, [short_link]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+//   if (loading) return <p>Loading...</p>;
+//   if (error) return <p>{error}</p>;
 
   return (
     <Layout>
       <div style={containerStyle}>
-        <h2 style={headingStyle}>Links for Short URL: {`https://front-shor-link.vercel.app/l/${short_link}`}</h2>
+        <h2 style={headingStyle}>Links for Short URL: {`https://front-shor-link.vercel.app/linklist/${short_link}`}</h2>
         {linksList.length === 0 ? (
           <p>No links found for this short URL.</p>
         ) : (
-          <ul style={listStyle}>
-            {linksList.map((link, index) => (
-              <li key={index} style={listItemStyle}>
-                <a href={link.url} target="_blank" rel="noopener noreferrer" style={linkStyle}>
-                  {link.title || link.url}
-                </a>
-                <p style={descriptionStyle}>{link.description}</p>
-              </li>
-            ))}
-          </ul>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>URL</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {linksList.map((link, index) => (
+                <tr key={index}>
+                  <td>{link.title || 'No Title'}</td>
+                  <td>
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" style={linkStyle}>
+                      {link.url}
+                    </a>
+                  </td>
+                  <td>{link.description || 'No Description'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         )}
       </div>
     </Layout>
@@ -69,28 +81,15 @@ const headingStyle = {
   color: '#333',
 };
 
-const listStyle = {
-  listStyleType: 'none',
-  padding: '0',
-};
-
-const listItemStyle = {
-  marginBottom: '15px',
-  padding: '10px',
-  backgroundColor: '#fff',
-  borderRadius: '5px',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-};
+const tableStyle = {
+    width: '100%',
+    borderCollapse: 'collapse',
+    marginTop: '20px',
+  };
 
 const linkStyle = {
   color: '#007BFF',
   textDecoration: 'none',
   fontWeight: 'bold',
 };
-
-const descriptionStyle = {
-  color: '#555',
-  marginTop: '5px',
-};
-
 export default ShortUrlPage;
